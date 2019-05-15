@@ -13,6 +13,9 @@ RSpec.describe SavingsGoalsController, type: :controller do
       get :new
       expect(response).to have_http_status(:success)
     end
+
+    it "saves the model" do
+    end
   end
 
   describe "#create" do
