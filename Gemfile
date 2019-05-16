@@ -38,6 +38,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :test do
   gem 'database_cleaner'
+  gem 'rails-controller-testing'
 end
 
 group :development, :test do
