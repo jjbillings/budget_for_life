@@ -16,6 +16,23 @@ class SavingsGoalsController < ApplicationController
     redirect_to @savings_goal
   end
 
+  def edit
+  end
+
+  def update
+    @savings_goal = SavingsGoal.find(params[:id])
+    params[:savings_goal].each do |param, val|
+      @savings_goal[param] = val
+    end
+
+    @savings_goal.save!
+
+    redirect_to @savings_goal
+  end
+
+  def destroy
+  end
+
   private
 
   def savings_goal_params
