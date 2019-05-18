@@ -10,6 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2019_05_15_010950) do
+
+  create_table "savings_goals", force: :cascade do |t|
+    t.string "name"
+    t.date "target_date"
+    t.boolean "strict_target_date", default: false
+    t.decimal "target_amount", precision: 11, scale: 2
+    t.decimal "current_amount", precision: 11, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
