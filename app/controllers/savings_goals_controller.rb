@@ -4,6 +4,7 @@ class SavingsGoalsController < ApplicationController
   end
 
   def show
+    @savings_goal = SavingsGoal.find(params[:id])
   end
 
   def new

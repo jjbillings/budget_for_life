@@ -27,10 +27,18 @@ RSpec.describe SavingsGoalsController, type: :controller do
   end
 
   describe "GET #show" do
-    it "returns a success response" do
-      savings_goal = SavingsGoal.create! valid_attributes
-      get :show, params: {id: savings_goal.to_param}, session: valid_session
-      expect(response).to be_successful
+    let(:savings_goal) { FactoryBot.create(:savings_goal) }
+
+    describe "with a valid id" do
+      before { get :show, params: {id: savings_goal.to_param}, session: valid_session }
+
+      it "returns a success response" do
+        expect(response).to be_successful
+      end
+
+      it "assigns the correct savings_goal" do
+        expect(assigns(:savings_goal)).to eq savings_goal
+      end
     end
   end
 
