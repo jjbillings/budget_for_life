@@ -1,5 +1,5 @@
 <h2>New Savings Goal</h2>
-<%= form_with scope: :savings_goal, url: savings_goals_path, local: true do |form| %>
+<%= form_for @savings_goal do |form| %>
   <p>
     <%= form.label :name %><br>
     <%= form.text_field :name %>
@@ -7,7 +7,7 @@
 
   <p>
     <%= form.label :target_date %><br>
-    <%= form.text_field :target_date %>
+    <%= form.date_field :target_date %>
   </p>
 
   <p>

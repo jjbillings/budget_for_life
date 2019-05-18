@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "savings_goals/edit", type: :view do
-  let(:savings_goal) { SavingsGoal.create(attributes_for(:savings_goal)) }
+  let(:savings_goal) { create(:savings_goal) }
 
   it "renders the edit savings_goal form" do
     skip "Need to build out the UI"

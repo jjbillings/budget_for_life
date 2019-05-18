@@ -8,6 +8,7 @@ class SavingsGoalsController < ApplicationController
   end
 
   def new
+    @savings_goal = SavingsGoal.new
   end
 
   def create
