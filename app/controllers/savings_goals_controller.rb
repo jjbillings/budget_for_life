@@ -12,8 +12,12 @@ class SavingsGoalsController < ApplicationController
   def create
     @savings_goal = SavingsGoal.new(savings_goal_params)
 
-    @savings_goal.save!
-    redirect_to @savings_goal
+    begin
+      @savings_goal.save!
+      redirect_to @savings_goal
+    rescue
+      render :new
+    end
   end
 
   def edit
@@ -25,12 +29,20 @@ class SavingsGoalsController < ApplicationController
       @savings_goal[param] = val
     end
 
-    @savings_goal.save!
+    begin
+      @savings_goal.save!
 
-    redirect_to @savings_goal
+      redirect_to @savings_goal
+    rescue
+      render :edit
+    end
   end
 
   def destroy
+    @savings_goal = SavingsGoal.find(params[:id])
+    @savings_goal.destroy!
+
+    redirect_to savings_goals_url
   end
 
   private
