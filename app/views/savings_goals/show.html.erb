@@ -16,4 +16,8 @@
     <td>Target Amount: </td>
     <td class="dollars"><%= number_with_delimiter(@savings_goal.target_amount) %></td>
   </tr>
+  <tr>
+    <td>Percent of goal achieved: </td>
+    <td class="percent"><%= number_with_delimiter(@savings_goal.proportion_reached * 100)%></td>
+  </tr>
 </table>

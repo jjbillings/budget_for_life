@@ -4,3 +4,7 @@
 .dollars::before {
   content:"$";
 }
+
+.percent::after {
+  content:"%"
+}

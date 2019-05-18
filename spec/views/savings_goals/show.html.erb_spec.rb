@@ -11,4 +11,10 @@ RSpec.describe "savings_goals/show", type: :view do
     expect(rendered).to include number_with_delimiter(savings_goal.target_amount).to_s
     expect(rendered).to include number_with_delimiter(savings_goal.current_amount).to_s
   end
+
+  it "renders proportion of goal reached as a percent" do
+    percentage = (savings_goal.proportion_reached * 100)
+    render
+    expect(rendered).to include percentage.to_s
+  end
 end
