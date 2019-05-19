@@ -42,7 +42,7 @@ RSpec.describe SavingsGoal, type: :model do
       savings_goal.current_amount = 1
       savings_goal.target_amount = 3
 
-      expect(savings_goal.proportion_reached).to eq(0.33)
+      expect(savings_goal.proportion_reached).to eq(0.3333)
     end
   end
 end

@@ -13,7 +13,10 @@ RSpec.describe "savings_goals/show", type: :view do
   end
 
   it "renders proportion of goal reached as a percent" do
-    percentage = (savings_goal.proportion_reached * 100)
+    savings_goal.current_amount = 1
+    savings_goal.target_amount = 3
+    percentage = 33.33
+    
     render
     expect(rendered).to include percentage.to_s
   end

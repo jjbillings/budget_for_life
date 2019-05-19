@@ -3,6 +3,6 @@ class SavingsGoal < ApplicationRecord
   validates_numericality_of :target_amount, :current_amount
 
   def proportion_reached
-    (current_amount / target_amount).round(2)
+    (current_amount / target_amount).round(4)
   end
 end
