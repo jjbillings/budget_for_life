@@ -1,1 +1,21 @@
 <h2>Savings Goals</h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Target Date</th>
+    <th>Strict?</th>
+    <th>Current Amount</th>
+    <th>Target Amount</th>
+    <th>Percent Reached</th>
+  </tr>
+  <% @savings_goals.map do |goal| %>
+    <tr>
+      <td><%= goal.name %></td>
+      <td><%= goal.target_date %></td>
+      <td><%= goal.strict_target_date %></td>
+      <td class="dollars"><%= goal.current_amount %></td>
+      <td class="dollars"><%= goal.target_amount %></td>
+      <td class="percent"><%= (goal.proportion_reached * 100) %></td>
+    </tr>
+  <% end %>
+</table>
