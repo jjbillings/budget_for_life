@@ -1,3 +1,3 @@
 class User < ApplicationRecord
-  has_many :savings_goals
+  has_many :savings_goals, dependent: :destroy
 end
