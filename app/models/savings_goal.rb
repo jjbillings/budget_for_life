@@ -1,4 +1,5 @@
 class SavingsGoal < ApplicationRecord
+  belongs_to :user
   validates_presence_of :name, :target_date
   validates_numericality_of :target_amount, :current_amount
 

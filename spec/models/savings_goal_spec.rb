@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe SavingsGoal, type: :model do
-  let(:valid_attributes) { attributes_for(:savings_goal) }
-  let(:savings_goal) { SavingsGoal.new(valid_attributes) }
+  let(:savings_goal) { build(:savings_goal) }
 
   describe "Validations" do
     it "is valid with valid attributes" do
