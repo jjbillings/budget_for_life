@@ -52,6 +52,6 @@ class SavingsGoalsController < ApplicationController
   def savings_goal_params
     params.require(:savings_goal).permit(:name,
       :target_date, :strict_target_date, :target_amount,
-      :current_amount)
+      :current_amount, :user_id)
   end
 end

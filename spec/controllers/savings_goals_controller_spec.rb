@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe SavingsGoalsController, type: :controller do
+  let(:user) { create(:user) }
 
   # This should return the minimal set of attributes required to create a valid
   # SavingsGoal. As you add validations to SavingsGoal, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    attributes_for(:savings_goal)
+    attributes_for(:savings_goal).merge({ user_id: user.id })
   }
 
   let(:invalid_attributes) {
@@ -19,15 +20,16 @@ RSpec.describe SavingsGoalsController, type: :controller do
   let(:valid_session) { {} }
 
   describe "GET #index" do
+    let(:savings_goal) { create(:savings_goal) }
+
     it "returns a success response" do
-      SavingsGoal.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_successful
     end
   end
 
   describe "GET #show" do
-    let(:savings_goal) { FactoryBot.create(:savings_goal) }
+    let(:savings_goal) { create(:savings_goal) }
 
     describe "with a valid id" do
       before { get :show, params: {id: savings_goal.to_param}, session: valid_session }
@@ -50,8 +52,9 @@ RSpec.describe SavingsGoalsController, type: :controller do
   end
 
   describe "GET #edit" do
+    let(:savings_goal) { create(:savings_goal) }
+
     it "returns a success response" do
-      savings_goal = SavingsGoal.create! valid_attributes
       get :edit, params: {id: savings_goal.to_param}, session: valid_session
       expect(response).to be_successful
     end
