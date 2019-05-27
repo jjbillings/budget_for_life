@@ -1,1 +1,33 @@
-<h2>Savings Goals</h2>
+<header class="header">
+  <div class="container">
+    <h2>Savings Goals</h2>
+  </div>
+</header>
+<div class="container">
+  <table class="table">
+    <thead>
+      <th>Name</th>
+      <th>Target Date</th>
+      <th>Strict?</th>
+      <th>Current Amount</th>
+      <th>Target Amount</th>
+      <th>Percent Reached</th>
+    </thead>
+    <% @savings_goals.map do |goal| %>
+      <tr>
+        <td><div class="text-md"><%= goal.name %></div></td>
+        <td><%= goal.target_date %></td>
+        <td><%= goal.strict_target_date %></td>
+        <td class="dollars"><%= goal.current_amount %></td>
+        <td class="dollars"><%= goal.target_amount %></td>
+        <td class="percent"><%= (goal.proportion_reached * 100) %></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="btn-right-wrapper">
+    <%= button_to "Create a new goal",
+      new_savings_goal_path,
+      { method: "get", class: "btn btn-primary btn-right absolute" }
+    %>
+  </div>
+</div>

@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "savings_goals/new", type: :view do
-  before(:each) do
-    assign(:savings_goal, SavingsGoal.new())
-  end
+  let(:savings_goal) { SavingsGoal.new }
+  before(:each) { assign(:savings_goal, savings_goal) }
 
   it "renders new savings_goal form" do
     render

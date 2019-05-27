@@ -1,31 +1,36 @@
-<h2>New Savings Goal</h2>
-<%= form_with scope: :savings_goal, url: savings_goals_path, local: true do |form| %>
-  <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-  </p>
+<div class="container">
+  <header class="header">
+    <h2>New Savings Goal</h2>
+  </header>
+  <%= form_for @savings_goal, html: { class: "form" } do |form| %>
+    <div class="input-box">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: "input input-text" %>
+    </div>
+    <hr/>
+    <div class="input-box">
+      <%= form.label :target_date %>
+      <%= form.date_field :target_date, class: "input input-text" %>
+    </div>
+    <hr/>
+    <div class="input-box">
+      <%= form.label :strict_target_date %>
+      <%= form.check_box :strict_target_date, class: "input input-checkbox" %>
+    </div>
+    <hr/>
 
-  <p>
-    <%= form.label :target_date %><br>
-    <%= form.text_field :target_date %>
-  </p>
-
-  <p>
-    <%= form.label :strict_target_date %><br>
-    <%= form.check_box :strict_target_date %>
-  </p>
-
-  <p>
-    <%= form.label :target_amount %><br>
-    <%= form.text_field :target_amount %>
-  </p>
-
-  <p>
-    <%= form.label :current_amount %><br>
-    <%= form.text_field :current_amount %>
-  </p>
-
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+    <div class="input-box">
+      <%= form.label :target_amount %>
+      <%= form.text_field :target_amount, class: "input input-text" %>
+    </div>
+    <hr/>
+    <div class="input-box">
+      <%= form.label :current_amount %>
+      <%= form.text_field :current_amount, class: "input input-text" %>
+    </div>
+    <hr/>
+    <div>
+      <%= form.submit "Save", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

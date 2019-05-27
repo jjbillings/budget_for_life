@@ -1,1 +1,23 @@
-<h1>Savings Goal</h1>
+<h1>Savings Goal: <%= @savings_goal.name %></h1>
+<table class="table">
+  <tr>
+    <th>Attribute</th>
+    <th>Value</th>
+  </tr>
+  <tr>
+    <td>Target Date</td>
+    <td><%= @savings_goal.target_date %></td>
+  </tr>
+  <tr>
+    <td>Current Amount</td>
+    <td class="dollars"><%= number_with_delimiter(@savings_goal.current_amount) %></td>
+  </tr>
+  <tr>
+    <td>Target Amount</td>
+    <td class="dollars"><%= number_with_delimiter(@savings_goal.target_amount) %></td>
+  </tr>
+  <tr>
+    <td>Percent of goal achieved</td>
+    <td class="percent"><%= number_with_delimiter(@savings_goal.proportion_reached * 100)%></td>
+  </tr>
+</table>

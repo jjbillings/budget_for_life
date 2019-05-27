@@ -29,4 +29,20 @@ RSpec.describe SavingsGoal, type: :model do
       expect(savings_goal).not_to be_valid
     end
   end
+
+  describe "#proportion_reached" do
+    it "returns the correct proportion" do
+      savings_goal.current_amount = 50
+      savings_goal.target_amount = 500
+
+      expect(savings_goal.proportion_reached).to eq(0.10)
+    end
+
+    it "returns the proportion rounded to nearest thousandth" do
+      savings_goal.current_amount = 1
+      savings_goal.target_amount = 3
+
+      expect(savings_goal.proportion_reached).to eq(0.3333)
+    end
+  end
 end
