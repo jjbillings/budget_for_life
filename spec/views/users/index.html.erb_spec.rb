@@ -7,13 +7,13 @@ RSpec.describe "users/index", type: :view do
         :first_name => "First Name",
         :last_name => "Last Name",
         :email => "Email",
-        :age => 2
+        :birthdate => 19.years.ago
       ),
       User.create!(
         :first_name => "First Name",
         :last_name => "Last Name",
         :email => "Email",
-        :age => 2
+        :birthdate => 19.years.ago
       )
     ])
   end
@@ -23,6 +23,6 @@ RSpec.describe "users/index", type: :view do
     assert_select "tr>td", :text => "First Name".to_s, :count => 2
     assert_select "tr>td", :text => "Last Name".to_s, :count => 2
     assert_select "tr>td", :text => "Email".to_s, :count => 2
-    assert_select "tr>td", :text => 2.to_s, :count => 2
+    assert_select "tr>td", :text => (19.years.ago).to_s, :count => 2
   end
 end

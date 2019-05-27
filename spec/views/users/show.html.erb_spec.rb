@@ -6,7 +6,7 @@ RSpec.describe "users/show", type: :view do
       :first_name => "First Name",
       :last_name => "Last Name",
       :email => "Email",
-      :age => 2
+      :birthdate => 20.years.ago
     ))
   end
 
@@ -15,6 +15,5 @@ RSpec.describe "users/show", type: :view do
     expect(rendered).to match(/First Name/)
     expect(rendered).to match(/Last Name/)
     expect(rendered).to match(/Email/)
-    expect(rendered).to match(/2/)
   end
 end

@@ -6,7 +6,7 @@ RSpec.describe "users/edit", type: :view do
       :first_name => "MyString",
       :last_name => "MyString",
       :email => "MyString",
-      :age => 1
+      :birthdate => 19.years.ago
     ))
   end
 
@@ -21,7 +21,7 @@ RSpec.describe "users/edit", type: :view do
 
       assert_select "input[name=?]", "user[email]"
 
-      assert_select "input[name=?]", "user[age]"
+      assert_select "input[name=?]", "user[birthdate]"
     end
   end
 end
