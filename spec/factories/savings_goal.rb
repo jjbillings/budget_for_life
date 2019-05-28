@@ -1,5 +1,7 @@
 FactoryBot.define do
   factory :savings_goal do |f|
+    user
+    
     f.name { "asdf" }
     f.target_date { Date.new(2019, 10, 21) }
     f.strict_target_date { false }

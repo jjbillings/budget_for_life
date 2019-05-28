@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe SavingsGoal, type: :model do
-  let(:valid_attributes) { attributes_for(:savings_goal) }
-  let(:savings_goal) { SavingsGoal.new(valid_attributes) }
+  let(:savings_goal) { build(:savings_goal) }
 
   describe "Validations" do
     it "is valid with valid attributes" do
@@ -14,18 +13,18 @@ RSpec.describe SavingsGoal, type: :model do
       expect(savings_goal).not_to be_valid
     end
 
-    it "is not valid without a target_date" do
-      savings_goal.target_date = nil
+    it "is not valid without a date target_date" do
+      savings_goal.target_date = "fkae"
       expect(savings_goal).not_to be_valid
     end
 
-    it "is not valid without a target_amount" do
-      savings_goal.target_amount = nil
+    it "is not valid without a numerical target_amount" do
+      savings_goal.target_amount = "bogus"
       expect(savings_goal).not_to be_valid
     end
 
-    it "is not valid without a current_amount" do
-      savings_goal.current_amount = nil
+    it "is not valid without a numerical current_amount" do
+      savings_goal.current_amount = "NaN"
       expect(savings_goal).not_to be_valid
     end
   end
