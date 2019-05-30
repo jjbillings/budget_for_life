@@ -20,16 +20,32 @@ RSpec.describe SavingsGoalsController, type: :controller do
   let(:valid_session) { {} }
 
   describe "GET #index" do
-    let(:savings_goal) { create(:savings_goal) }
+    let!(:user) { create(:user, id: 99) }
+    let!(:savings_goals) { [
+      create(:savings_goal),
+      create(:savings_goal, user_id: user.id)
+    ] }
 
     it "returns a success response" do
       get :index, params: {}, session: valid_session
       expect(response).to be_successful
     end
+
+    it "sets the savings goals correctly" do
+      get :index, params: {}, session: valid_session
+      expect(assigns(:savings_goals)).to eq savings_goals
+    end
+
+    context "when user_id is given" do
+      it "should set the savings goals correctly" do
+        get :index, params: { user_id: user.id }, session: valid_session
+        expect(assigns(:savings_goals)).to eq savings_goals.select { |goal| goal[:user_id] == user.id}
+      end
+    end
   end
 
   describe "GET #show" do
-    let(:savings_goal) { create(:savings_goal) }
+    let!(:savings_goal) { create(:savings_goal) }
 
     describe "with a valid id" do
       before { get :show, params: {id: savings_goal.to_param}, session: valid_session }
@@ -52,7 +68,7 @@ RSpec.describe SavingsGoalsController, type: :controller do
   end
 
   describe "GET #edit" do
-    let(:savings_goal) { create(:savings_goal) }
+    let!(:savings_goal) { create(:savings_goal) }
 
     it "returns a success response" do
       get :edit, params: {id: savings_goal.to_param}, session: valid_session
