@@ -1,6 +1,10 @@
 class SavingsGoalsController < ApplicationController
   def index
-    @savings_goals = SavingsGoal.all
+    if params[:user_id].present?
+      @savings_goals = SavingsGoal.where(user_id: params[:user_id])
+    else
+      @savings_goals = SavingsGoal.all
+    end
   end
 
   def show

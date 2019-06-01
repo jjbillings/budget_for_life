@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  resources :users
-  get 'welcome/index'
-
   resources :savings_goals
+
+  resources :users do |users|
+    resources :savings_goals
+  end
+
+  get 'welcome/index'
 
   root 'welcome#index'
 end

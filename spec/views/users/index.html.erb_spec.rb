@@ -1,21 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe "users/index", type: :view do
-  before(:each) do
-    assign(:users, [
-      User.create!(
+  let!(:users) { [
+      create(:user,
         :first_name => "First Name",
         :last_name => "Last Name",
         :email => "Email",
         :birthdate => 19.years.ago
       ),
-      User.create!(
+      create(:user,
         :first_name => "First Name",
         :last_name => "Last Name",
         :email => "Email",
         :birthdate => 19.years.ago
       )
-    ])
+  ] }
+
+  before(:each) do
+    assign(:users, users)
   end
 
   it "renders a list of users" do
