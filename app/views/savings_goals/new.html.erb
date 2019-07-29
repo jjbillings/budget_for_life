@@ -4,33 +4,33 @@
   </header>
   <%= form_for @savings_goal, html: { class: "form" } do |form| %>
     <div class="input-box">
-      <%= form.label :name %>
+      <%= form.label :name, class: "input-label" %>
       <%= form.text_field :name, class: "input input-text" %>
     </div>
     <hr/>
     <div class="input-box">
-      <%= form.label :target_date %>
+      <%= form.label :target_date, class: "input-label" %>
       <%= form.date_field :target_date, class: "input input-text" %>
     </div>
     <hr/>
     <div class="input-box">
-      <%= form.label :strict_target_date %>
+      <%= form.label :strict_target_date, class: "input-label" %>
       <%= form.check_box :strict_target_date, class: "input input-checkbox" %>
     </div>
     <hr/>
 
     <div class="input-box">
-      <%= form.label :target_amount %>
+      <%= form.label :target_amount, class: "input-label" %>
       <%= form.text_field :target_amount, class: "input input-text" %>
     </div>
     <hr/>
     <div class="input-box">
-      <%= form.label :current_amount %>
+      <%= form.label :current_amount, class: "input-label" %>
       <%= form.text_field :current_amount, class: "input input-text" %>
     </div>
     <hr/>
     <div>
-      <%= form.submit "Save", class: "btn btn-primary" %>
+      <%= form.submit "Save", class: "btn btn-primary btn-right" %>
     </div>
   <% end %>
 </div>
