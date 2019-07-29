@@ -2,18 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "users/index", type: :view do
   let!(:users) { [
-      create(:user,
-        :first_name => "First Name",
-        :last_name => "Last Name",
-        :email => "Email",
-        :birthdate => 19.years.ago
-      ),
-      create(:user,
-        :first_name => "First Name",
-        :last_name => "Last Name",
-        :email => "Email",
-        :birthdate => 19.years.ago
-      )
+      create(:user),
+      create(:user)
   ] }
 
   before(:each) do
@@ -22,9 +12,12 @@ RSpec.describe "users/index", type: :view do
 
   it "renders a list of users" do
     render
-    assert_select "tr>td", :text => "First Name".to_s, :count => 2
-    assert_select "tr>td", :text => "Last Name".to_s, :count => 2
-    assert_select "tr>td", :text => "Email".to_s, :count => 2
-    assert_select "tr>td", :text => (19.years.ago).to_s, :count => 2
+
+    users.each do |user|
+      assert_select "tr>td", :text => user.first_name
+      assert_select "tr>td", :text => user.last_name
+      assert_select "tr>td", :text => user.email
+      assert_select "tr>td", :text => user.birthdate.to_s
+    end
   end
 end
