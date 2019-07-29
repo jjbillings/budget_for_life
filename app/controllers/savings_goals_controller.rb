@@ -1,14 +1,12 @@
 class SavingsGoalsController < ApplicationController
+  # before_action :authenticate_user!
+
   def index
-    if params[:user_id].present?
-      @savings_goals = SavingsGoal.where(user_id: params[:user_id])
-    else
-      @savings_goals = SavingsGoal.all
-    end
+    @savings_goals = current_user.savings_goals
   end
 
   def show
-    @savings_goal = SavingsGoal.find(params[:id])
+    @savings_goal = current_user.savings_goals.find(params[:id])
   end
 
   def new
@@ -30,7 +28,7 @@ class SavingsGoalsController < ApplicationController
   end
 
   def update
-    @savings_goal = SavingsGoal.find(params[:id])
+    @savings_goal = current_user.savings_goals.find(params[:id])
     params[:savings_goal].each do |param, val|
       @savings_goal[param] = val
     end
@@ -45,7 +43,7 @@ class SavingsGoalsController < ApplicationController
   end
 
   def destroy
-    @savings_goal = SavingsGoal.find(params[:id])
+    @savings_goal = current_user.savings_goals.find(params[:id])
     @savings_goal.destroy!
 
     redirect_to savings_goals_url

@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe SavingsGoalsController, type: :controller do
+  include Devise::Test::ControllerHelpers
+
   let(:user) { create(:user) }
 
   # This should return the minimal set of attributes required to create a valid
@@ -19,6 +21,11 @@ RSpec.describe SavingsGoalsController, type: :controller do
   # SavingsGoalsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before(:each) do
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    sign_in user
+  end
+
   describe "GET #index" do
     let!(:user) { create(:user, id: 99) }
     let!(:savings_goals) { [
@@ -33,19 +40,12 @@ RSpec.describe SavingsGoalsController, type: :controller do
 
     it "sets the savings goals correctly" do
       get :index, params: {}, session: valid_session
-      expect(assigns(:savings_goals)).to eq savings_goals
-    end
-
-    context "when user_id is given" do
-      it "should set the savings goals correctly" do
-        get :index, params: { user_id: user.id }, session: valid_session
-        expect(assigns(:savings_goals)).to eq savings_goals.select { |goal| goal[:user_id] == user.id}
-      end
+      expect(assigns(:savings_goals)).to eq savings_goals.select { |goal| goal[:user_id] == user.id}
     end
   end
 
   describe "GET #show" do
-    let!(:savings_goal) { create(:savings_goal) }
+    let!(:savings_goal) { create(:savings_goal, { user_id: user.id }) }
 
     describe "with a valid id" do
       before { get :show, params: {id: savings_goal.to_param}, session: valid_session }
