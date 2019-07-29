@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :savings_goals
 
   resources :users do |users|
