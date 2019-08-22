@@ -24,22 +24,30 @@ require 'rails_helper'
 # `rails-controller-testing` gem.
 
 RSpec.describe AccountsController, type: :controller do
+  include Devise::Test::ControllerHelpers
+
+  let(:user) { create(:user) }
 
   # This should return the minimal set of attributes required to create a valid
   # Account. As you add validations to Account, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    attributes_for(:account).merge({ user_id: user.id })
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { account_type: nil }
   }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # AccountsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+
+  before(:each) do
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    sign_in user
+  end
 
   describe "GET #index" do
     it "returns a success response" do
@@ -97,14 +105,18 @@ RSpec.describe AccountsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          account_type: :checking,
+          name: "Mount Eisenhower"
+        }
       }
 
       it "updates the requested account" do
         account = Account.create! valid_attributes
         put :update, params: {id: account.to_param, account: new_attributes}, session: valid_session
         account.reload
-        skip("Add assertions for updated state")
+        expect(account.account_type).to eq(new_attributes[:account_type].to_s)
+        expect(account.name).to eq(new_attributes[:name])
       end
 
       it "redirects to the account" do

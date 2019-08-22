@@ -1,7 +1,8 @@
 FactoryBot.define do
-  factory :account do
+  factory :account do |f|
     user
-    account_type { 1 }
-    name { "Test AcCatamount" }
+
+    f.account_type { :brokerage }
+    f.name { "Test AcCatamount" }
   end
 end

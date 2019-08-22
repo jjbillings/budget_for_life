@@ -5,6 +5,7 @@ RSpec.describe "accounts/new", type: :view do
   before(:each) { assign(:account, account) }
 
   it "renders new account form" do
+    skip "Need to build out the UI"
     render
 
     assert_select "form[action=?][method=?]", accounts_path, "post" do
