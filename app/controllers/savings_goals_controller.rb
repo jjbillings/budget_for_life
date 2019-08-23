@@ -1,5 +1,5 @@
 class SavingsGoalsController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
 
   def index
     @savings_goals = current_user.savings_goals
@@ -15,6 +15,7 @@ class SavingsGoalsController < ApplicationController
 
   def create
     @savings_goal = SavingsGoal.new(savings_goal_params)
+    @savings_goal.user_id = current_user.id
 
     begin
       @savings_goal.save!
