@@ -3,8 +3,8 @@ FactoryBot.define do
     account
     savings_goal
 
-    quantity { 1 }
-    price { "9.99" }
+    quantity { 2 }
+    price { 9.99 }
     ticker { "Ticker" }
   end
 end
