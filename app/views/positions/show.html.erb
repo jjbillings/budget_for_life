@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @position.quantity %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @position.price %>
+</p>
+
+<p>
+  <strong>Ticker:</strong>
+  <%= @position.ticker %>
+</p>
+
+<%= link_to 'Edit', edit_position_path(@position) %> |
+<%= link_to 'Back', positions_path %>
