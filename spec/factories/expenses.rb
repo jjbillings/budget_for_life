@@ -1,7 +1,9 @@
 FactoryBot.define do
-  factory :expense do
-    name { "MyString" }
-    amount { "9.99" }
-    status { 1 }
+  factory :expense do |f|
+    user
+
+    f.name { "MyString" }
+    f.amount { "9.99" }
+    f.status { 1 }
   end
 end

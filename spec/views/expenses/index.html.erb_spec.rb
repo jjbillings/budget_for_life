@@ -1,25 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe "expenses/index", type: :view do
-  before(:each) do
-    assign(:expenses, [
-      Expense.create!(
-        :name => "Name",
-        :amount => "9.99",
-        :status => 2
-      ),
-      Expense.create!(
-        :name => "Name",
-        :amount => "9.99",
-        :status => 2
-      )
-    ])
-  end
+  let(:expenses) { create_list(:expense, 2) }
+  before(:each) { assign(:expenses, expenses) }
 
   it "renders a list of expenses" do
     render
-    assert_select "tr>td", :text => "Name".to_s, :count => 2
-    assert_select "tr>td", :text => "9.99".to_s, :count => 2
-    assert_select "tr>td", :text => 2.to_s, :count => 2
+    assert_select "tr>td", :text => expenses.first.name, :count => 2
+    assert_select "tr>td", :text => expenses.first.amount.to_s, :count => 2
+    assert_select "tr>td", :text => expenses.first.status.to_s, :count => 2
   end
 end

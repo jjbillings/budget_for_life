@@ -1,18 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe "expenses/edit", type: :view do
-  before(:each) do
-    @expense = assign(:expense, Expense.create!(
-      :name => "MyString",
-      :amount => "9.99",
-      :status => 1
-    ))
-  end
+  let!(:expense) { create(:expense) }
+  before(:each) { assign(:expense, expense) }
 
   it "renders the edit expense form" do
     render
 
-    assert_select "form[action=?][method=?]", expense_path(@expense), "post" do
+    assert_select "form[action=?][method=?]", expense_path(expense), "post" do
 
       assert_select "input[name=?]", "expense[name]"
 
