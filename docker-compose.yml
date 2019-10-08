@@ -7,3 +7,16 @@ services:
       - .:/budget_for_life
     ports:
       - "3000:3000"
+    depends_on:
+      - db
+    env:
+      - DB_HOST=db
+  db:
+    image: "postgres:latest"
+    container_name: "bfl_postgres"
+    ports:
+      - "5432:5432"
+    volumes:
+      - bfl_dbdata:/var/lib/postgresql/data
+volumes:
+  bfl_dbdata:
