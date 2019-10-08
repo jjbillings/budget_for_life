@@ -31,18 +31,6 @@ ActiveRecord::Schema.define(version: 2019_09_19_002024) do
     t.index ["user_id"], name: "index_expenses_on_user_id"
   end
 
-  create_table "positions", force: :cascade do |t|
-    t.integer "quantity"
-    t.decimal "price", precision: 11, scale: 2
-    t.string "ticker"
-    t.integer "account_id"
-    t.integer "savings_goal_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["account_id"], name: "index_positions_on_account_id"
-    t.index ["savings_goal_id"], name: "index_positions_on_savings_goal_id"
-  end
-
   create_table "savings_goals", force: :cascade do |t|
     t.string "name"
     t.date "target_date"
