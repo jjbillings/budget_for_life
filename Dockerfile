@@ -1,8 +1,8 @@
 FROM ruby:2.6.3
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
 
-RUN mkdir /budget_for_life
-WORKDIR /budget_for_life
+RUN mkdir -p /usr/src/budget_for_life
+WORKDIR /usr/src/budget_for_life
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
 COPY . .
