@@ -14,13 +14,25 @@
   <div class="field">
     <%= form.label "Source Account" %>
     <% account_options = current_user.accounts.map { |a| [a.name, a.id] } %>
-    <%= form.select(:account_id, options_for_select(account_options)) %>
+
+    <% if @account %>
+      <% default_account_option = [@account.name, @account.id] %>
+      <%= form.select(:account_id, options_for_select(account_options, default_account_option)) %>
+    <% else %>
+      <%= form.select(:account_id, options_for_select(account_options)) %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label "Expense" %>
     <% expense_options = current_user.expenses.map { |a| [a.name, a.id] } %>
-    <%= form.select(:expense_id, options_for_select(expense_options)) %>
+
+    <% if @expense %>
+      <% default_expense_option = [@expense.name, @expense.id] %>
+      <%= form.select(:expense_id, options_for_select(expense_options, default_expense_option)) %>
+    <% else %>
+      <%= form.select(:expense_id, options_for_select(expense_options)) %>
+    <% end %>
   </div>
 
   <hr>

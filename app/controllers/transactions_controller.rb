@@ -1,6 +1,8 @@
 class TransactionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
+  before_action :prepare_account
+  before_action :prepare_expense
 
   # GET /transactions
   # GET /transactions.json
@@ -63,6 +65,14 @@ class TransactionsController < ApplicationController
   end
 
   private
+    def prepare_account
+      @account = current_user.accounts.find(params[:account_id]) if params[:account_id].present?
+    end
+
+    def prepare_expense
+      @expense = current_user.expenses.find(params[:expense_id]) if params[:expense_id].present?
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_transaction
       @transaction = Transaction.find(params[:id])
