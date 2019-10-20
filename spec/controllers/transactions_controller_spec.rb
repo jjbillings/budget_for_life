@@ -33,15 +33,16 @@ RSpec.describe TransactionsController, type: :controller do
 
   describe "GET #index" do
     it "returns a success response" do
-      Transaction.create! valid_attributes
+      create(:transaction)
       get :index, params: {}, session: valid_session
       expect(response).to be_successful
     end
   end
 
   describe "GET #show" do
+    let(:transaction) { create(:transaction) }
+
     it "returns a success response" do
-      transaction = Transaction.create! valid_attributes
       get :show, params: {id: transaction.to_param}, session: valid_session
       expect(response).to be_successful
     end
@@ -55,8 +56,9 @@ RSpec.describe TransactionsController, type: :controller do
   end
 
   describe "GET #edit" do
+    let(:transaction) { create(:transaction) }
+
     it "returns a success response" do
-      transaction = Transaction.create! valid_attributes
       get :edit, params: {id: transaction.to_param}, session: valid_session
       expect(response).to be_successful
     end
