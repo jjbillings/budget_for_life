@@ -3,8 +3,8 @@ FactoryBot.define do
     account
     expense
 
-    amount { "9.99" }
-    description { "MyString" }
-    vendor { "MyString" }
+    amount { "420.99" }
+    description { "Some random description" }
+    vendor { "Ultrarunning fiends" }
   end
 end
