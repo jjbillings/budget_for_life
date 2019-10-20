@@ -7,4 +7,8 @@ class User < ApplicationRecord
   has_many :expenses, dependent: :destroy
   has_many :savings_goals, dependent: :destroy
   validates_presence_of :email, :birthdate
+
+  def transactions
+    accounts.map(&:transactions).flatten
+  end
 end
