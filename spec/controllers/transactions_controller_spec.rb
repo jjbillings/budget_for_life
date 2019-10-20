@@ -4,16 +4,21 @@ RSpec.describe TransactionsController, type: :controller do
   include Devise::Test::ControllerHelpers
 
   let(:user) { create(:user) }
+  let(:account) { create(:account) }
+  let(:expense){ create(:expense) }
 
   # This should return the minimal set of attributes required to create a valid
   # Transaction. As you add validations to Transaction, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    attributes_for(:transaction).merge({
+      account_id: account.id,
+      expense_id: expense.id
+    })
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { amount: "twenty one" }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -25,7 +30,7 @@ RSpec.describe TransactionsController, type: :controller do
     @request.env["devise.mapping"] = Devise.mappings[:user]
     sign_in user
   end
-  
+
   describe "GET #index" do
     it "returns a success response" do
       Transaction.create! valid_attributes
@@ -82,14 +87,21 @@ RSpec.describe TransactionsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          amount: 300,
+          description: "a new description",
+          vendor: "totally_diff_vendor"
+        }
       }
 
       it "updates the requested transaction" do
         transaction = Transaction.create! valid_attributes
         put :update, params: {id: transaction.to_param, transaction: new_attributes}, session: valid_session
         transaction.reload
-        skip("Add assertions for updated state")
+        # Not sure if it's sketchy to iterate over new_attributes
+        new_attributes.each do |key, value|
+          expect(transaction.public_send(key)).to eq(value)
+        end
       end
 
       it "redirects to the transaction" do
