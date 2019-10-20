@@ -4,6 +4,6 @@ FactoryBot.define do
 
     f.name { "MyString" }
     f.amount { "9.99" }
-    f.status { 1 }
+    f.status { :unstarted }
   end
 end
