@@ -1,20 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe Expense, type: :model do
-  let(:expense) { create(:expense, :with_transactions) }
+  let!(:expense) { create(:expense) }
 
   describe "#current_amount" do
-    let(:transaction_amount) { 100.01 }
-    before(:each) do
-      # This seems way hacky
-      expense.transactions.each do |tran|
-        tran.amount = transaction_amount
-        tran.save!
+    context "with transactions" do
+      let!(:transactions) { create_list(:transaction, 2, { expense: expense })}
+
+      it "computes current amount with transactions" do
+        # It's really frustrating that this is testing implementation
+        expected_amount = transactions.map(&:amount).sum
+        expect(expense.current_amount).to eq(expected_amount)
       end
     end
 
-    it "computes the current amount correctly" do
-      expected_amount = transaction_amount * expense.transactions.count
+    it "computes current amount without transactions" do
+      expected_amount = 0
       expect(expense.current_amount).to eq(expected_amount)
     end
   end
