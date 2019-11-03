@@ -3,10 +3,14 @@
 <div class="container">
   <table class="table">
     <tr>
-      <td><%= button_to "View All Savings Goals", savings_goals_path, { method: "get", class: "btn btn-primary" } %></td>
+      <td><%= button_to "View All Expenses", expenses_path, { method: "get", class: "btn btn-primary" } %></td>
+      <td><%= button_to "View All Accounts", accounts_path, { method: "get", class: "btn btn-primary" } %></td>
+      <td><%= button_to "View All Transactions", transactions_path, { method: "get", class: "btn btn-primary" } %></td>
     </tr>
     <tr>
-      <td><%= button_to "Create Savings Goal", new_savings_goal_path, { method: "get", class: "btn btn-primary" } %></td>
+      <td><%= button_to "Create Expense", new_expense_path, { method: "get", class: "btn btn-primary" } %></td>
+      <td><%= button_to "Create Account", new_account_path, { method: "get", class: "btn btn-primary" } %></td>
+      <td><%= button_to "Create Transaction", new_transaction_path, { method: "get", class: "btn btn-primary" } %></td>
     </tr>
   </table>
 </div>
