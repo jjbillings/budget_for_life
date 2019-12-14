@@ -4,4 +4,8 @@ class Account < ApplicationRecord
   validates_presence_of :name, :account_type
 
   enum account_type: [:brokerage, :checking, :savings]
+
+  def balance
+    transactions.map(&:amount).sum
+  end
 end
