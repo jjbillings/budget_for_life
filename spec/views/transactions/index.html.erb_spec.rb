@@ -19,7 +19,7 @@ RSpec.describe "transactions/index", type: :view do
   it "renders a list of transactions" do
     render
     transactions.each do |transaction|
-      assert_select "tr>td", :text => transaction.amount.to_s
+      assert_select "tr>td", :text => number_to_currency(transaction.amount)
       assert_select "tr>td", :text => transaction.description.to_s
       assert_select "tr>td", :text => transaction.vendor.to_s
     end

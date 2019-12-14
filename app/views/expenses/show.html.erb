@@ -5,12 +5,12 @@
 
 <p>
   <strong>Current Amount:</strong>
-  <%= @expense.current_amount %>
+  <%= number_to_currency(@expense.current_amount) %>
 </p>
 
 <p>
   <strong>Target Amount:</strong>
-  <%= @expense.amount %>
+  <%= number_to_currency(@expense.amount) %>
 </p>
 
 <p>
@@ -24,7 +24,7 @@
 <br/>
 <hr/>
 
-<h2><%= "Transactions for Expense: #{@expense.name}" %></h2>
+<h2><%= "Transactions for: #{@expense.name}" %></h2>
 <%= render "transactions/table", transactions: @expense.transactions %>
 <div align="left">
   <%= link_to 'Add Transaction', new_transaction_path(expense_id: @expense.id) %>

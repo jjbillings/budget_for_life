@@ -8,6 +8,11 @@
   <%= @account.account_type %>
 </p>
 
+<p>
+  <strong>Current balance:</strong>
+  <%= number_to_currency(@account.balance) %>
+</p>
+
 <%= link_to 'Edit', edit_account_path(@account) %> |
 <%= link_to 'Back', accounts_path %>
 
@@ -15,7 +20,7 @@
 <hr/>
 
 <!-- TODO: Extract to a partial for account and expense? -->
-<h2><%= "Transactions for Account: #{@account.name}" %></h2>
+<h2><%= "Transactions for: #{@account.name}" %></h2>
 <%= render "transactions/table", transactions: @account.transactions %>
 <div align="left">
   <%= link_to 'Add Transaction', new_transaction_path(account_id: @account.id) %>
