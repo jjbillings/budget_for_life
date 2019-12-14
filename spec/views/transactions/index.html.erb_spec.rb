@@ -20,6 +20,7 @@ RSpec.describe "transactions/index", type: :view do
     render
     transactions.each do |transaction|
       assert_select "tr>td", :text => number_to_currency(transaction.amount)
+      assert_select "tr>td", :text => transaction.posting_date
       assert_select "tr>td", :text => transaction.description.to_s
       assert_select "tr>td", :text => transaction.vendor.to_s
     end
