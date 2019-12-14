@@ -1,0 +1,3 @@
+#! /bin/bash
+echo "Running specs..."
+docker-compose run --rm web rspec
