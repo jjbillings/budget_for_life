@@ -19,6 +19,7 @@ RSpec.describe "transactions/show", type: :view do
   it "renders attributes in <p>" do
     render
     expect(rendered).to match(/#{transaction.amount}/)
+    expect(rendered).to match(/#{transaction.posting_date}/)
     expect(rendered).to match(/#{transaction.description}/)
     expect(rendered).to match(/#{transaction.vendor}/)
   end
