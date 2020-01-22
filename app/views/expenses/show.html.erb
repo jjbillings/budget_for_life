@@ -18,6 +18,16 @@
   <%= @expense.status %>
 </p>
 
+<p>
+  <strong>Target Date:</strong>
+  <%= @expense.target_date %>
+</p>
+
+<p>
+  <strong>Strict Target Date:</strong>
+  <%= @expense.strict_target_date %>
+</p>
+
 <%= link_to 'Edit', edit_expense_path(@expense) %> |
 <%= link_to 'Back', expenses_path %>
 

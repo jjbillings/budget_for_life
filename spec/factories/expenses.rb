@@ -24,6 +24,8 @@ FactoryBot.define do
     f.name { "MyString" }
     f.amount { "9.99" }
     f.status { :unstarted }
+    f.target_date { Date.new(2020, 01, 22) }
+    f.strict_target_date  { false }
 
     # TODO: Not using this rn
     trait :with_transactions do
