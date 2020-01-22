@@ -2,13 +2,19 @@
 #
 # Table name: expenses
 #
-#  id         :bigint           not null, primary key
-#  name       :string
-#  amount     :decimal(11, 2)
-#  status     :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :integer
+#  id                 :bigint           not null, primary key
+#  amount             :decimal(11, 2)
+#  name               :string
+#  status             :integer
+#  strict_target_date :boolean          default(FALSE)
+#  target_date        :date
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  user_id            :integer
+#
+# Indexes
+#
+#  index_expenses_on_user_id  (user_id)
 #
 
 FactoryBot.define do

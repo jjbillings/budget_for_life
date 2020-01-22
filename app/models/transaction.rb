@@ -5,12 +5,22 @@
 #  id           :bigint           not null, primary key
 #  amount       :decimal(11, 2)
 #  description  :string
+#  posting_date :date
 #  vendor       :string
-#  account_id   :bigint           not null
-#  expense_id   :bigint           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  posting_date :date
+#  account_id   :bigint           not null
+#  expense_id   :bigint           not null
+#
+# Indexes
+#
+#  index_transactions_on_account_id  (account_id)
+#  index_transactions_on_expense_id  (expense_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (account_id => accounts.id)
+#  fk_rails_...  (expense_id => expenses.id)
 #
 
 class Transaction < ApplicationRecord
