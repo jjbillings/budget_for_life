@@ -9,5 +9,7 @@ RSpec.describe "expenses/show", type: :view do
     expect(rendered).to match(expense.name)
     expect(rendered).to match(expense.amount.to_s)
     expect(rendered).to match(expense.status.to_s)
+    expect(rendered).to match(expense.target_date.to_s)
+    expect(rendered).to match(expense.strict_target_date.to_s)
   end
 end

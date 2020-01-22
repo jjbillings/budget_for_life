@@ -24,6 +24,15 @@
   <div class="field">
     <%= form.label :status %>
     <%= form.number_field :status %>
+
+  <div class="field">
+    <%= form.label :target_date %>
+    <%= form.text_field :target_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :strict_target_date? %>
+    <%= form.check_box :strict_target_date %>
   </div>
 
   <div class="actions">
