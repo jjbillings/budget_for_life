@@ -3,11 +3,15 @@
 # Table name: accounts
 #
 #  id           :bigint           not null, primary key
-#  user_id      :integer
 #  account_type :integer
 #  name         :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  user_id      :integer
+#
+# Indexes
+#
+#  index_accounts_on_user_id  (user_id)
 #
 
 FactoryBot.define do
