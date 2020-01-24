@@ -5,7 +5,6 @@
 #  id                 :bigint           not null, primary key
 #  amount             :decimal(11, 2)
 #  name               :string
-#  status             :integer
 #  strict_target_date :boolean          default(FALSE)
 #  target_date        :date
 #  created_at         :datetime         not null
@@ -20,8 +19,6 @@
 class Expense < ApplicationRecord
   belongs_to :user
   has_many :transactions
-
-  enum status: [:unstarted, :in_progress, :completed]
 
   def current_amount
     transactions.map(&:amount).sum

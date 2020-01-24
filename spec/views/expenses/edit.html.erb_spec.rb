@@ -12,8 +12,6 @@ RSpec.describe "expenses/edit", type: :view do
       assert_select "input[name=?]", "expense[name]"
 
       assert_select "input[name=?]", "expense[amount]"
-
-      assert_select "input[name=?]", "expense[status]"
     end
   end
 end
