@@ -20,7 +20,20 @@ class Expense < ApplicationRecord
   belongs_to :user
   has_many :transactions
 
+  module Statuses
+    UNSTARTED = "unstarted"
+    IN_PROGRESS = "in_progress"
+    COMPLETED = "completed"
+    LATE = "late"
+  end
+
   def current_amount
     transactions.map(&:amount).sum
+  end
+
+  def status
+    return Statuses::LATE if Date.current > target_date && current_amount < amount
+    return Statuses::UNSTARTED if current_amount == 0
+    return current_amount < amount ? Statuses::IN_PROGRESS : Statuses::COMPLETED
   end
 end

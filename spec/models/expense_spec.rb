@@ -37,4 +37,86 @@ RSpec.describe Expense, type: :model do
       expect(expense.current_amount).to eq(expected_amount)
     end
   end
+
+  describe "#status" do
+    let(:current_date) { Date.new(2020, 01, 15) }
+    before do
+      allow(Date).to receive(:current).and_return(current_date)
+      expense.amount = 100
+    end
+
+    context "when the due date is in the future" do
+      let(:future_date) { Date.new(2020, 01, 24) }
+      before do
+        expense.target_date = future_date
+      end
+
+      context "and the expense hasn't been started" do
+        before do
+          allow(expense).to receive(:current_amount).and_return(0)
+        end
+
+        it "returns the correct status" do
+          expect(expense.status).to eq("unstarted")
+        end
+      end
+
+      context "and the expense is not completed" do
+        before do
+          allow(expense).to receive(:current_amount).and_return(10)
+        end
+
+        it "returns the correct status" do
+          expect(expense.status).to eq("in_progress")
+        end
+      end
+
+      context "and the expense is paid in full" do
+        before do
+          allow(expense).to receive(:current_amount).and_return(100)
+        end
+
+        it "returns the correct status" do
+          expect(expense.status).to eq("completed")
+        end
+      end
+    end
+
+    context "when the due date is in the past" do
+      let(:past_date) { Date.new(2020, 01, 01) }
+      before do
+        expense.target_date = past_date
+      end
+
+      context "and the expense hasn't been started" do
+        before do
+          allow(expense).to receive(:current_amount).and_return(0)
+        end
+
+        it "returns the correct status" do
+          expect(expense.status).to eq("late")
+        end
+      end
+
+      context "and the expense hasn't been completed" do
+        before do
+          allow(expense).to receive(:current_amount).and_return(10)
+        end
+
+        it "returns the correct status" do
+          expect(expense.status).to eq("late")
+        end
+      end
+
+      context "and the expense is paid in full" do
+        before do
+          allow(expense).to receive(:current_amount).and_return(100)
+        end
+
+        it "returns the correct status" do
+          expect(expense.status).to eq("completed")
+        end
+      end
+    end
+  end
 end
