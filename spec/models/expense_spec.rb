@@ -57,7 +57,7 @@ RSpec.describe Expense, type: :model do
         end
 
         it "returns the correct status" do
-          expect(expense.status).to eq("unstarted")
+          expect(expense.status).to eq(Expense::Statuses::UNSTARTED)
         end
       end
 
@@ -67,7 +67,7 @@ RSpec.describe Expense, type: :model do
         end
 
         it "returns the correct status" do
-          expect(expense.status).to eq("in_progress")
+          expect(expense.status).to eq(Expense::Statuses::IN_PROGRESS)
         end
       end
 
@@ -77,7 +77,7 @@ RSpec.describe Expense, type: :model do
         end
 
         it "returns the correct status" do
-          expect(expense.status).to eq("completed")
+          expect(expense.status).to eq(Expense::Statuses::COMPLETED)
         end
       end
     end
@@ -94,7 +94,7 @@ RSpec.describe Expense, type: :model do
         end
 
         it "returns the correct status" do
-          expect(expense.status).to eq("late")
+          expect(expense.status).to eq(Expense::Statuses::LATE)
         end
       end
 
@@ -104,7 +104,7 @@ RSpec.describe Expense, type: :model do
         end
 
         it "returns the correct status" do
-          expect(expense.status).to eq("late")
+          expect(expense.status).to eq(Expense::Statuses::LATE)
         end
       end
 
@@ -114,7 +114,7 @@ RSpec.describe Expense, type: :model do
         end
 
         it "returns the correct status" do
-          expect(expense.status).to eq("completed")
+          expect(expense.status).to eq(Expense::Statuses::COMPLETED)
         end
       end
     end
