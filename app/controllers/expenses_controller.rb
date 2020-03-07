@@ -71,8 +71,7 @@ class ExpensesController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    # TODO: Add Expense target date
     def expense_params
-      params.require(:expense).permit(:name, :amount)
+      params.require(:expense).permit(:amount, :name, :strict_target_date, :target_date)
     end
 end

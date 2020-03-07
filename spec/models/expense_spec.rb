@@ -6,7 +6,7 @@
 #  amount             :decimal(11, 2)
 #  name               :string
 #  strict_target_date :boolean          default(FALSE)
-#  target_date        :date
+#  target_date        :date             default(Sun, 08 Mar 2020)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  user_id            :integer
@@ -40,6 +40,7 @@ RSpec.describe Expense, type: :model do
 
   describe "#status" do
     let(:current_date) { Date.new(2020, 01, 15) }
+
     before do
       allow(Date).to receive(:current).and_return(current_date)
       expense.amount = 100
@@ -47,6 +48,7 @@ RSpec.describe Expense, type: :model do
 
     context "when the due date is in the future" do
       let(:future_date) { Date.new(2020, 01, 24) }
+
       before do
         expense.target_date = future_date
       end
@@ -61,7 +63,7 @@ RSpec.describe Expense, type: :model do
         end
       end
 
-      context "and the expense is not completed" do
+      context "and the expense is started, but not completed" do
         before do
           allow(expense).to receive(:current_amount).and_return(10)
         end
@@ -84,6 +86,7 @@ RSpec.describe Expense, type: :model do
 
     context "when the due date is in the past" do
       let(:past_date) { Date.new(2020, 01, 01) }
+
       before do
         expense.target_date = past_date
       end
@@ -98,7 +101,7 @@ RSpec.describe Expense, type: :model do
         end
       end
 
-      context "and the expense hasn't been completed" do
+      context "and the expense is started, but hasn't been completed" do
         before do
           allow(expense).to receive(:current_amount).and_return(10)
         end

@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2020_01_24_010848) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
-    t.date "target_date"
+    t.date "target_date", default: "2020-03-08"
     t.boolean "strict_target_date", default: false
     t.index ["user_id"], name: "index_expenses_on_user_id"
   end

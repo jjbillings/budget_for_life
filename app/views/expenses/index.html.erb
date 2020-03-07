@@ -17,7 +17,7 @@
       <tr>
         <td><%= expense.name %></td>
         <td><%= expense.amount %></td>
-        <td><%= expense.status %></td>
+        <td><%= format_status(expense.status) %></td>
         <td><%= expense.target_date %></td>
         <td><%= expense.strict_target_date ? "Yes" : "No" %></td>
         <td><%= link_to 'Show', expense %></td>

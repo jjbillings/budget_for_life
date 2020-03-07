@@ -6,7 +6,7 @@
 #  amount             :decimal(11, 2)
 #  name               :string
 #  strict_target_date :boolean          default(FALSE)
-#  target_date        :date
+#  target_date        :date             default(Sun, 08 Mar 2020)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  user_id            :integer
