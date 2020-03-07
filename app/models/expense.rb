@@ -5,9 +5,8 @@
 #  id                 :bigint           not null, primary key
 #  amount             :decimal(11, 2)
 #  name               :string
-#  status             :integer
 #  strict_target_date :boolean          default(FALSE)
-#  target_date        :date
+#  target_date        :date             default(Sun, 08 Mar 2020)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  user_id            :integer
@@ -21,9 +20,20 @@ class Expense < ApplicationRecord
   belongs_to :user
   has_many :transactions
 
-  enum status: [:unstarted, :in_progress, :completed]
+  module Statuses
+    UNSTARTED = "unstarted"
+    IN_PROGRESS = "in_progress"
+    COMPLETED = "completed"
+    LATE = "late"
+  end
 
   def current_amount
     transactions.map(&:amount).sum
+  end
+
+  def status
+    return Statuses::LATE if Date.current > target_date && current_amount < amount
+    return Statuses::UNSTARTED if current_amount == 0
+    return current_amount < amount ? Statuses::IN_PROGRESS : Statuses::COMPLETED
   end
 end

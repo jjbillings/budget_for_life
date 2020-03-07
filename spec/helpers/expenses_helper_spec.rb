@@ -11,5 +11,12 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe ExpensesHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "format_status" do
+    let(:status) { "a_hot-messOf-Stuff" }
+
+    it "formats the status correctly" do
+      formatted_status = format_status(status)
+      expect(formatted_status).to eq("A Hot Mess Of Stuff")
+    end
+  end
 end

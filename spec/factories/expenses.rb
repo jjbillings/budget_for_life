@@ -5,9 +5,8 @@
 #  id                 :bigint           not null, primary key
 #  amount             :decimal(11, 2)
 #  name               :string
-#  status             :integer
 #  strict_target_date :boolean          default(FALSE)
-#  target_date        :date
+#  target_date        :date             default(Sun, 08 Mar 2020)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  user_id            :integer
@@ -23,7 +22,6 @@ FactoryBot.define do
 
     f.name { "MyString" }
     f.amount { "9.99" }
-    f.status { :unstarted }
     f.target_date { Date.new(2020, 01, 22) }
     f.strict_target_date  { false }
 
